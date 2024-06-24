@@ -40,7 +40,7 @@ const RegisterPage = () => {
     <div className="h-screen bg-gray-200 flex items-center justify-center ">
       <div className="w-1/2 bg-white rounded-lg min-h-[600px] overflow-hidden flex flex-row-reverse space-y-8 ">
         <div
-          className="flex-1 bg-cover bg-center p-12 flex flex-col space-y-10 text-white"
+          className="flex-1 bg-cover bg-center p-12 flex flex-col space-y-12 text-white"
           style={{
             backgroundImage:
               "linear-gradient(rgba(0, 79, 248, 0.5), rgba(7, 85, 131, 0.5)), url('https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600')",
@@ -56,7 +56,7 @@ const RegisterPage = () => {
               Already part of our community? Log in!
             </span>
             <Link to="/log-in">
-              <button className="w-1/2 p-2 border-none bg-white text-blue-500 font-bold cursor-pointer rounded-md">
+              <button className="w-1/2 p-2 border-none bg-white text-blue-500 font-bold cursor-pointer rounded">
                 Login
               </button>
             </Link>
@@ -79,7 +79,7 @@ const RegisterPage = () => {
               type="password"
               autoComplete="On"
             />
-            <button className="mt-4 bg-blue-500 hover:bg-blue-700 px-4 py-2 text-white uppercase rounded tracking-wider">
+            <button className="mt-4 bg-blue-500 hover:bg-blue-700 font-bold px-4 py-2 text-white uppercase rounded tracking-wider">
               Register
             </button>
           </form>

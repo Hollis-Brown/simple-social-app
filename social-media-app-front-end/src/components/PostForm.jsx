@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Card from "./Card";
 import {
   createSocialPost,
   getUserSocialPosts,
@@ -16,13 +17,15 @@ function PostForm() {
   const fetchPosts = async () => {
     try {
       const fetchedPosts = await getUserSocialPosts();
-      console.log("Successfully got user cars");
       setPosts(fetchedPosts.posts);
-      console.log("Successfully fetched posts", posts);
     } catch (error) {
-      console.error("Error fetching posts:", error);
     }
   };
+
+  // Inside your component
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   // Function to handle creating a new post
   const handleCreatePost = async () => {
@@ -62,93 +65,108 @@ function PostForm() {
 
   // Function to render posts dynamically
   const renderPosts = () => {
-    return posts.map((post, index) => (
-      <div>
-        <div key={index} className="">
+    return posts
+      .sort((a, b) => b.id - a.id)
+      .map((post, index) => (
+        <Card key={index}>
+        <div>
           {" "}
-          <div className="flex-shrink-0">
-            <img
-              className="inline-block h-10 w-10 rounded-full"
-              src="https://i.imgur.com/e8nzIKr.png"
-              alt=""
-            />
+          <div className="space-x-3">
+            {/* ProfileCard */}
+            <div className="flex ml-3">
+              <img
+                className="inline-block w-11 rounded-full"
+                src="https://i.imgur.com/e8nzIKr.png"
+                alt=""
+                />
+                <h3 className="font-bold ml-3">John Doe</h3>
+            </div>
+            <div className="flex-1">
+              <div className="mt-3 rounded-lg overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+                {post.id === editPostId ? (
+                  <textarea
+                    value={editMessageValue}
+                    onChange={(e) => setEditMessageValue(e.target.value)}
+                    placeholder="What's on your mind?"
+                    rows={1}
+                    className="block w-full p-3 border-0 resize-none focus:ring-0 sm:text-sm "
+                  />
+                ) : (
+                  <p className="text-gray-500 sm:text-sm ">
+                    {post.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Buttons Div */}
+              <div className="bottom-0 pr-2 py-2 flex justify-end space-x-2">
+                <button
+                  onClick={() => handleDeletePost(post.id)}
+                  className="px-4 py-2 text-sm font-medium bg-red-500 text-white rounded-md hover:bg-red-700"
+                >
+                  Delete
+                </button>
+                {post.id === editPostId ? (
+                  <button
+                    onClick={() => savePostChanges(post)}
+                    className="px-4 py-2 text-sm font-medium bg-green-500 text-white rounded-md hover:bg-green-700"
+                  >
+                    Save
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleEditPost(post)}
+                    className="px-4 py-2 text-sm font-medium bg-blue-500 text-white rounded-md hover:bg-blue-700"
+                  >
+                    Edit
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="flex items-center mb-4">
-            <div className="w-12 h-12 bg-gray-200 rounded-full mr-4"></div>
-            {post.id === editPostId ? (
-              <textarea
-                value={editMessageValue}
-                onChange={(e) => setEditMessageValue(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-md resize-none"
-              />
-            ) : (
-              <p className="text-gray-800">{post.message}</p>
-            )}
           </div>
-          <div className="flex justify-end space-x-2">
-            <button
-              onClick={() => handleDeletePost(post.id)}
-              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
-            >
-              Delete
-            </button>
-            {post.id === editPostId ? (
-              <button
-                onClick={() => savePostChanges(post)}
-                className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
-              >
-                Save
-              </button>
-            ) : (
-              <button
-                onClick={() => handleEditPost(post)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-              >
-                Edit
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-    ));
+          </Card>
+      ));
   };
 
-  return (
-    <div className="flex items-start space-x-4">
-      {/* ProfileCard */}
-      <div className="flex-shrink-0">
-        <img
-          className="inline-block h-10 w-10 rounded-full"
-          src="https://i.imgur.com/e8nzIKr.png"
-          alt=""
-        />
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="rounded-lg overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
-          <textarea
-            value={newMessageValue}
-            onChange={(e) => setNewMessageValue(e.target.value)}
-            placeholder="What's on your mind?"
-            rows={1}
-            className="block w-full py-3 border-0 resize-none focus:ring-0 sm:text-sm"
+  return <div className="">
+    <Card>
+ <div className="space-x-3">
+        {/* ProfileCard */}
+        <div className="flex ml-3">
+          <img
+            className="inline-block w-11 rounded-full"
+            src="https://i.imgur.com/e8nzIKr.png"
+            alt=""
           />
+          <h3 className="font-bold ml-3">John Doe</h3>
         </div>
+        <div className="flex-1">
+          <div className="-ml-3 rounded-lg overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 mt-1">
+            <textarea
+              value={newMessageValue}
+              onChange={(e) => setNewMessageValue(e.target.value)}
+              placeholder="What's on your mind?"
+              rows={1}
+              className="block w-full border-0 resize-none focus:ring-0 lg:text-sm sm:text-sm"
+            />
+          </div>
 
-        {/* Button Div */}
-        <div className=" bottom-0 inset-x-0 pl-3 pr-2 py-2 flex justify-end">
-          <button
-            onClick={handleCreatePost}
-            type="submit"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Post
-          </button>
+          {/* Button Div */}
+          <div className=" bottom-0 pr-2 py-2 flex justify-end">
+            <button
+              onClick={handleCreatePost}
+              type="submit"
+              className="px-4 py-2 text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700"
+            >
+              Post
+            </button>
+          </div>
         </div>
-
-        <div className="mt-1">{renderPosts()}</div>
       </div>
-    </div>
-  );
+    </Card>
+      <div>{renderPosts()}</div>
+  </div>;
 }
 
 export default PostForm;

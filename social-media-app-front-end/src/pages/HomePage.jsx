@@ -15,9 +15,7 @@ function Home() {
       <div className="flex-grow mt-4 max-w-4xl mx-auto gap-6 overflow-auto scrollbar-hide">
         <div className="flex flex-col mt-14">
           <h1 className="text-6xl mb-4 text-gray-300">Posts</h1>
-          <Card>
-            <PostForm />
-          </Card>
+          <PostForm className="lg:mr-20"/>
           <Card>
             <Posts />
           </Card>

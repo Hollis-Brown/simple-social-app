@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className="fixed flex flex-col top-24 left-0 w-14 hover:w-64 md:w-64 bg-white-900 dark:bg-white-900 h-full transition-all duration-300 border-none z-10 sidebar">
+    <div className=" fixed flex flex-col top-24 left-0 w-14 hover:w-64 md:w-64 bg-white-900 dark:bg-white-900 h-full transition-all duration-300 border-none z-10 sidebar ">
       <div className="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
         <ul className="flex flex-col py-4 space-y-1">
           <li className="px-5 hidden md:block">
@@ -12,7 +12,7 @@ const Sidebar = () => {
                 className="relative flex flex-row items-center h-12 focus:outline-none text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:text-blue-800 pr-6"
               >
                   <img
-                    className="h-11 w-11 rounded-full"
+                    className="w-11 rounded-full"
                     src="https://i.imgur.com/e8nzIKr.png"
                     alt=""
                   />
@@ -116,7 +116,7 @@ const Sidebar = () => {
                 </svg>
 
                 <span className="ml-6 text-md tracking-wide truncate">
-                  Saved
+                  Saved Posts
                 </span>
               </Link>
             </div>
@@ -159,14 +159,14 @@ const Sidebar = () => {
                   className="size-10"
                 >
                   <path
-                    strokeLinecap="round"
+                    strokeLinecap="round"sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
                     strokeLinejoin="round"
                     d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z"
                   />
                 </svg>
 
                 <span className="ml-6 text-md tracking-wide truncate">
-                  Video
+                  Videos
                 </span>
               </Link>
             </div>

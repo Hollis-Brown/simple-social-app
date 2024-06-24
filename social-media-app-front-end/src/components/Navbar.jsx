@@ -35,9 +35,9 @@ const handleLogout = () => {
                     src="https://tailwindui.com/img/logos/workflow-logo-blue-600-mark-gray-800-text.svg"
                     alt="Workflow"
                   /> */}
-                  <span className="text-blue-600 text-lg ">Simple Social</span>
+                  <span className="text-blue-600 text-lg">Simple Social</span>
                 </div>
-                <div className="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
+                <div className="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end md:flex-2">
                   <div className="max-w-lg w-full lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
                       Search
@@ -62,7 +62,7 @@ const handleLogout = () => {
                 </div>
               </div>
               {/* Updated Links */}
-              <div className="-ml-4 md:-ml-6 lg:-ml-40 hidden lg:ml- lg:flex lg:space-x-28 ">
+              <div className="-ml-4 md:-ml-6 lg:-ml-0 hidden lg:ml- lg:flex lg:space-x-24">
                 <Link
                   to="/home"
                   className="border-transparent text-gray-500 hover:border-blue-500 hover:text-blue-500 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
@@ -184,7 +184,7 @@ const handleLogout = () => {
                     <MenuButton className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
+                        className="w-11 rounded-full"
                         src="https://i.imgur.com/e8nzIKr.png"
                         alt="Image of Hollis"
                       />
@@ -202,7 +202,7 @@ const handleLogout = () => {
                     <MenuItems className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none flex flex-row">
                       <MenuItem>
                         {({ active }) => (
-                          <div className="flex items-center">
+                          <div className="flex items-center justify-center w-full">
                             <div
                               to="/log-in"
                               className={classNames(
@@ -210,7 +210,7 @@ const handleLogout = () => {
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              <button onClick={handleLogout}>Log Out</button>
+                              <button onClick={handleLogout} className="mx-auto">Log Out</button>
                             </div>
                           </div>
                         )}
@@ -223,10 +223,10 @@ const handleLogout = () => {
           </div>
 
 
-          <DisclosurePanel className="lg:hidden">
+          <DisclosurePanel className="lg:hidden md:text-center sm:text-center">
             {/* Mobile navigation links */}
             <div className="pt-2 pb-3 space-y-1">
-              <DisclosureButton as="a" href="/" className="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+              <DisclosureButton as="a" href="/home" className="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                 Home
               </DisclosureButton>
               <DisclosureButton as="a" href="/profile" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
@@ -240,6 +240,21 @@ const handleLogout = () => {
               </DisclosureButton>
               <DisclosureButton as="a" href="/notifications" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                 Notifications
+              </DisclosureButton>
+              <DisclosureButton as="a" href="/groups" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium md:hidden">
+                Groups
+              </DisclosureButton>
+              <DisclosureButton as="a" href="/videos" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium md:hidden">
+                Videos
+              </DisclosureButton>
+              <DisclosureButton as="a" href="/marketplace" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium md:hidden">
+                Marketplace
+              </DisclosureButton>
+              <DisclosureButton as="a" href="/events" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium md:hidden">
+                Events
+              </DisclosureButton>
+              <DisclosureButton as="a" href="/log-in" className="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium md:hidden">
+                Logout
               </DisclosureButton>
             </div>
             {/* User profile section remains unchanged */}

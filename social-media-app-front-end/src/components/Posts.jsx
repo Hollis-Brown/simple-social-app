@@ -3,10 +3,10 @@ function Posts() {
   return (
     <>
       <div className="flex gap-3">
-        <div>
+        <div className="ml-3">
           <a href="/profile">
             <span className="cursor-pointer">
-              <div className="w-12 rounded-full overflow-hidden">
+              <div className="w-11 rounded-full overflow-hidden">
                 <img src="https://i.imgur.com/e8nzIKr.png" alt="" />
               </div>
             </span>
@@ -15,11 +15,11 @@ function Posts() {
         <div className="grow">
           <p>
             <a href="/profile">
-              <span className="mr-1 font-semibold cursor-pointer hover:underline">
+              <span className="mr-1 cursor-pointer hover:underline font-bold">
                 John Doe
               </span>
             </a>{" "}
-            shared a <a className="text-socialBlue">album</a>
+<a />
           </p>
           <p className="text-gray-500 text-sm">2 hours ago</p>
         </div>
@@ -28,10 +28,10 @@ function Posts() {
           <div className="relative"></div>
         </div>
       </div>
-      <p className="my-3 text-sm">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, cum cupiditate deleniti ducimus et eveniet ex excepturi fuga magnam, maiores nam pariatur quibusdam, recusandae reprehenderit sapiente sed sint veniam? Beatae.
+      <p className="my-3 text-sm ml-3 text-gray-500">
+      Today I visited the San Francisco bridge and took a photo of it. 
       </p>
-      <div className="rounded-md overflow-hidden lg:h-48">
+      <div className="rounded-md overflow-hidden lg:h-100">
         <img
           src="https://th.bing.com/th/id/OIP.gNYUN6SpHUOmy-DftL2gBAHaD5?rs=1&pid=ImgDetMain"
           className="w-full h-auto"

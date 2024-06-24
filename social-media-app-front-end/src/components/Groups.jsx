@@ -11,7 +11,7 @@ function Groups() {
           <p className="text-base">
             There aren't any Groups to participate in today, but I'll let you know when people gather together again.
           </p>
-        </div>
+      </div>
     </div>
   );
 }
