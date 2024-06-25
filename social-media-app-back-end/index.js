@@ -43,63 +43,14 @@ app.use(async (req, res, next) => {
   }
 });
 
-/*-----------*/
-
-// These endpoints can be reached without needing a JWT
-app.get("/test", async (req, res) => {
-  const [cars] = await req.db.query(`SELECT * FROM car`);
-
-  console.log("/test endpoint reached");
-
-  res.json(cars);
-});
-
-app.put("/test", async (req, res) => {
-  const {
-    newMakeValue
-  } = req.body;
-
-  const [insert] = await req.db.query(
-    `
-    INSERT INTO car (make, model, year, date_created, user_id, deleted_flag)
-    VALUES (:newMakeValue, :newModelValue, :newYearValue, NOW(), :user_id, :deleted_flag);
-  `,
-    {
-      newMakeValue,
-      user_id: 1,
-      deleted_flag: 0,
-    }
-  );
-  res.json({
-    id: insert.insertId,
-    newMakeValue,
-    userId: 1,
-  });
-});
-
-app.delete("/test/:id", async (req, res) => {
-  console.log(req.params);
-  const { id } = req.params;
-  await req.db.query(`UPDATE car SET deleted_flag = 1 WHERE id = :carId`, {
-    carId: id,
-  });
-  res.json("Success!");
-});
-
-/*-----------*/
-
-// The entire block of code represents an Express route handler async function to ensure the server can handle requests efficiently without getting stuck during slow operations.
-// This handler is responsible for handling HTTP POST requests sent to the '/register' route path.
 
 app.post("/register", async function (req, res) {
   try {
     console.log('req.body', req.body);
     const { password, username } = req.body;
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insert user data into the database
     const [user] = await req.db.query(
       `INSERT INTO user (user_name, password) 
       VALUES (:username, :hashedPassword);`,
@@ -109,9 +60,8 @@ app.post("/register", async function (req, res) {
       }
     );
 
-    // Creating a JWT
     const jwtEncodedUser = jwt.sign(
-      { userId: user.insertId, username }, // Use username from req.body for JWT
+      { userId: user.insertId, username }, 
       process.env.JWT_KEY
     );
 
@@ -155,10 +105,6 @@ app.post('/log-in', async function (req, res) {
   }
 });
 
-
-
-
-// Jwt verification checks to see if there is an authorization header with a valid jwt in it.
 app.use(async function verifyJwt(req, res, next) {
   const { authorization: authHeader } = req.headers;
   
@@ -222,7 +168,6 @@ app.post("/social_post", async (req, res) => {
   });
 });
 
-// PUT endpoint for updating a social post
 app.put("/social_post", async (req, res) => {
   const { id, message } = req.body;
 
@@ -235,7 +180,6 @@ app.put("/social_post", async (req, res) => {
   res.json({ id, message, success: true });
 });
 
-// GET endpoint for fetching user's social posts
 app.get("/social_post", async (req, res) => {
   const { userId } = req.user;
 
@@ -246,7 +190,6 @@ app.get("/social_post", async (req, res) => {
   res.json({ posts });
 });
 
-// DELETE endpoint for deleting a social post
 app.delete("/social_post/:id", async (req, res) => {
   const { id: postId } = req.params;
   await req.db.query(`UPDATE social_post SET deleted_flag = 1 WHERE id = :postId`,
@@ -255,9 +198,7 @@ app.delete("/social_post/:id", async (req, res) => {
   res.json({ success: true });
 });
 
-/*-----------*/
 
-// Starts the Express server
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);
 });
