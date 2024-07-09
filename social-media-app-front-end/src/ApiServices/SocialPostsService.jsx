@@ -39,7 +39,7 @@ export const deleteSocialPost = async (postId) => {
   });
 
   return await response.json();
-};.
+};
 
 
 
